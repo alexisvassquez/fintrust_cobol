@@ -25,7 +25,7 @@
                    DISPLAY "Enter Account Number: "
                    ACCEPT ACCOUNT-NUMBER
                    DISPLAY "-------------------------------------"
-                   DISPLAY "Account Number : ACCOUNT-NUMBER"
+                   DISPLAY "Account Number : " ACCOUNT-NUMBER
                    DISPLAY "Account Type   : CHECKING"
                    DISPLAY "Status         : ACTIVE"
                    DISPLAY "Balance        : $999.99"
