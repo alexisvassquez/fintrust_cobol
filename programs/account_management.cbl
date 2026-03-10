@@ -14,12 +14,11 @@
                DISPLAY "====================================="
                DISPLAY "      ACCOUNT MANAGEMENT MODULE      "     
                DISPLAY "====================================="
-               DISPLAY "Welcome to your Acct Management. :)"
+               DISPLAY "Welcome to your Account Management. :)"
                DISPLAY " 1 - View Account Details"
                DISPLAY " 2 - Open New Account"
                DISPLAY " 3 - Close Existing Account"
                DISPLAY " 4 - Update Account Status"
-               DISPLAY " 0 - Return to Acct Management"
                DISPLAY " 9 - Return to Main Menu"
                ACCEPT ACCT-CHOICE
 
@@ -61,6 +60,7 @@
 
                    WHEN OTHER
                        DISPLAY "Invalid selection."
+                       DISPLAY "Returning to Accout Management menu."
                END-EVALUATE
            END-PERFORM
 
@@ -68,8 +68,9 @@
 
        NAVIGATION-PROMPT.
            DISPLAY "-------------------------------------"
-           DISPLAY "Press 0 to go back to previous screen."
-           DISPLAY "Press 9 to return to Main Menu."
+           DISPLAY "Select next action: "
+           DISPLAY " 0 - Back to Account Management"
+           DISPLAY " 9 - Return to Main Menu."
            ACCEPT NAV-CHOICE
 
            EVALUATE NAV-CHOICE
@@ -79,5 +80,5 @@
                    MOVE 9 TO ACCT-CHOICE
                WHEN OTHER
                    DISPLAY "Invalid selection."
-                   DISPLAY "Returning to Account Management."
+                   DISPLAY "Returning to Account Management menu."
            END-EVALUATE.
