@@ -60,7 +60,7 @@
 
                    WHEN OTHER
                        DISPLAY "Invalid selection."
-                       DISPLAY "Returning to Accout Management menu."
+                       DISPLAY "Returning to Account Management menu."
                END-EVALUATE
            END-PERFORM
 
