@@ -70,7 +70,7 @@
            DISPLAY "-------------------------------------"
            DISPLAY "Select next action: "
            DISPLAY " 0 - Back to Account Management"
-           DISPLAY " 9 - Return to Main Menu."
+           DISPLAY " 9 - Return to Main Menu"
            ACCEPT NAV-CHOICE
 
            EVALUATE NAV-CHOICE
