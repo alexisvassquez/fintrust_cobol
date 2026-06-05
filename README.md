@@ -1,43 +1,89 @@
 # FinTrust COBOL
-> 💼 A legacy-inspired fintech simulation built in COBOL for modern-day credibility and historic awareness.
+>
+> 💼 A modular COBOL banking simulation demonstrating core legacy financial system patterns.
 
-FinTrust COBOL is a minimalist COBOL-based finance simulation built to demonstrate the robustness and continued relevance of legacy financial systems. This repo simulates core banking operations like account creation, balance management, ledger summaries, and to demonstrate transaction processing using COBOL, the language still running trillions of dollars in global finance.
+FinTrust COBOL simulates the architecture of mainframe-era banking software using GnuCOBOL.
+It is structured as a multi-module COBOL application with a central menu driver that
+dynamically CALLs subprograms as shared objects — mirroring how real COBOL systems
+are organized in production mainframe environments.
 
 ---
 
-## 🏦 Why COBOL?
-COBOL (Common Business-Oriented Language) powers most of the world's banking infrastructure. Despite being developed in 1959, it's still heavily used in mainframe environments across banks, insurance companies, and government systems. This project celebrates its resilience while planting my own flag in the fintech space.
+## 🏦 Architecture
+
+The system follows a standard COBOL subprogram model:
+
+- `mainmenu.cbl` — Main driver. Compiled as an executable. Routes user input
+  to submodules via dynamic `CALL` statements.
+- `programs/` — Submodules compiled as `.so` shared objects (GnuCOBOL `-m` flag),
+  loaded at runtime via `COB_LIBRARY_PATH`.
+
+```bash
+mainmenu (executable)
+├── CALL "ACCTMGMT"   → programs/account_management.cbl
+├── CALL "VIEWTRANS"  → programs/view_transactions.cbl
+├── CALL "LEDGERSM"   → programs/ledger_summary.cbl
+└── CALL "AUTHUSER"   → programs/authenticate_user.cbl
+```
 
 ---
 
-## 💡 Features
-- Create and manage virtual customer accounts
-- Simulate deposits, withdrawals, and transfers
-- Generate simple account statements
-- Maintain a persistent flat file record system
-- Clean, modular COBOL source code (tested with GnuCOBOL)
+## 💡 Modules
+
+| Module | Program-ID | Description |
+| --- | --- | --- |
+| Account Management | `ACCTMGMT` | View, open, close, and update account records |
+| View Transactions | `VIEWTRANS` | Browse transactions by account, type, or date |
+| Ledger Summary | `LEDGERSM` | Summarize balances using fixed-decimal arithmetic |
+| Authenticate User | `AUTHUSER` | Credential lookup via table search |
 
 ---
 
 ## 🧰 Requirements
-- GnuCOBOL (install via `sudo apt install open-cobol` or `gnucobol3`)
-- Make or shell script (optional for automation)
-- A love for old-school elegance 🖥️
+
+- GnuCOBOL 3.x (`sudo apt install gnucobol` on Ubuntu/WSL)
+- GNU Make (optional, for the Makefile build)
+- Linux or WSL (Windows Subsystem for Linux)
 
 ---
 
-## 🔧 Running the Project
-To compile a module:
+## 🔧 Build & Run
+
+**Using Make (recommended):**
+
 ```bash
-cobc -x -o bin/mainmenu src/mainmenu.cbl
+make        # compile all modules and main executable
+make run    # launch FinTrust COBOL
+make clean  # remove compiled artifacts
 ```
 
-To run:
+**Manual compilation:**
+
 ```bash
-./bin/mainmenu
+cobc -m -o ACCTMGMT  programs/account_management.cbl
+cobc -m -o VIEWTRANS programs/view_transactions.cbl
+cobc -m -o LEDGERSM  programs/ledger_summary.cbl
+cobc -m -o AUTHUSER  programs/authenticate_user.cbl
+cobc -x -o fintrust  mainmenu.cbl
+
+COB_LIBRARY_PATH=. ./fintrust
 ```
+
+---
+
+## 🗂 Data Division Patterns Used
+
+- `PIC 9` / `PIC X` — numeric and alphanumeric field definitions
+- `PIC 9(9)V99` — fixed-decimal for monetary values
+- `OCCURS` — table definitions for multi-record structures
+- `REDEFINES` — field overlay for alternative data interpretations
+- `VALUE` — field initialization at declaration
 
 ---
 
 ## 📖 Purpose
-This repo is strictly for **educational** and **demonstrative** purposes only. FinTrust COBOL is in no way, shape, or form a banking institution.
+
+Built for educational and demonstrative purposes. FinTrust COBOL is not a banking institution.
+
+© 2026 Alexis M Vasquez, Software Engineer. All rights reserved. No financial services are provided by this software.
+

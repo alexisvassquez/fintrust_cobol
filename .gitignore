@@ -1,5 +1,12 @@
+# FinTrust COBOL .gitignore
 # ==== Ignore compiled binaries ====
 /bin/
+
+# ==== Compiled shared objects ====
+/lib/
+
+# ==== Compiled shared objects (GnuCOBOL modules) ====
+*.so
 
 # ==== OS-specific ====
 .DS_Store
