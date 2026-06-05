@@ -86,4 +86,3 @@ COB_LIBRARY_PATH=. ./fintrust
 Built for educational and demonstrative purposes. FinTrust COBOL is not a banking institution.
 
 © 2026 Alexis M Vasquez, Software Engineer. All rights reserved. No financial services are provided by this software.
-
