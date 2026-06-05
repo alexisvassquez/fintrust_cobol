@@ -1,17 +1,17 @@
        IDENTIFICATION DIVISION.
        PROGRAM-ID. LEDGERSM.
 
-       *> LEDGER SUMMARY MODULE
-       *> Demonstrates:
-       *>  - PIC 9(9)V99  fixed-decimal monetary fields
-       *>  - OCCURS for tabular ledger entry storage
-       *>  - ON SIZE ERROR for overflow protection
-       *>  - 88-level condition names for entry type flags
+      *> LEDGER SUMMARY MODULE
+      *> Demonstrates:
+      *>  - PIC 9(9)V99  fixed-decimal monetary fields
+      *>  - OCCURS for tabular ledger entry storage
+      *>  - ON SIZE ERROR for overflow protection
+      *>  - 88-level condition names for entry type flags
       
        DATA DIVISION.
        WORKING-STORAGE SECTION.
 
-       *> Ledger Entry Table
+      *> Ledger Entry Table
        01 LEDGER-TABLE.
            05 LEDGER-ENTRY OCCURS 10 TIMES
                            INDEXED BY ENTRY-IDX.
@@ -22,17 +22,17 @@
                    88 LE-DEBIT    VALUE "D".
                10 LE-AMOUNT       PIC 9(9)V99.
 
-       *> Running Totals
+      *> Running Totals
        01 TOTAL-CREDITS       PIC 9(9)V99  VALUE 0.
        01 TOTAL-DEBITS        PIC 9(9)V99  VALUE 0.
        01 NET-BALANCE         PIC S9(9)V99  VALUE 0.
        01 OVERFLOW-FLAG       PIC 9 VALUE 0.
 
-       *> Display Formatting
+      *> Display Formatting
        01 DISPLAY-AMOUNT      PIC Z(7)9.99.
        01 DISPLAY-BALANCE     PIC -Z(7)9.99.
 
-       *> Loop Control
+      *> Loop Control
        01 ENTRY-COUNT         PIC 99 VALUE 10.
        01 LEDGER-CHOICE       PIC 9 VALUE 0.
 
@@ -62,11 +62,11 @@
            END-PERFORM
            GOBACK.
 
-       *> LOAD-LEDGER DATA
-       *> Populates the OCCURS table with hardcoded ledger entries.
-       *> In a production system, this would READ from a flat file
-       *> or VSAM dataset.
-       *> See view_transactions.cbl for file I/O pattern
+      *> LOAD-LEDGER DATA
+      *> Populates the OCCURS table with hardcoded ledger entries.
+      *> In a production system, this would READ from a flat file
+      *> or VSAM dataset.
+      *> See view_transactions.cbl for file I/O pattern
        LOAD-LEDGER.
            MOVE "05/01/2026" TO LE-DATE(1)
            MOVE "OPENING BALANCE    " TO LE-DESCRIPTION(1)
@@ -118,14 +118,14 @@
            MOVE "C"                   TO LE-TYPE(10)
            MOVE 2400.00               TO LE-AMOUNT(10).
 
-       *> SHOW-ENTRIES
-       *> Iterates the OCCURS table using VARYING/INDEXED BY
-       *> and uses 88-level condition names to label each
-       *> entry type.
+      *> SHOW-ENTRIES
+      *> Iterates the OCCURS table using VARYING/INDEXED BY
+      *> and uses 88-level condition names to label each
+      *> entry type.
        SHOW-ENTRIES.
            DISPLAY "====================================="
            DISPLAY " DATE       DESCRIPTION          T      AMOUNT"
-           DISPLAY "====================================="
+           DISPLAY "-------------------------------------"
            PERFORM VARYING ENTRY-IDX FROM 1 BY 1
                UNTIL ENTRY-IDX > ENTRY-COUNT
                MOVE LE-AMOUNT(ENTRY-IDX) TO DISPLAY-AMOUNT
