@@ -75,6 +75,7 @@ COB_LIBRARY_PATH=. ./fintrust
 
 - `PIC 9` / `PIC X` — numeric and alphanumeric field definitions
 - `PIC 9(9)V99` — fixed-decimal for monetary values
+- `PIC S9(9)V99` - signed variable that can hold both positive and negative values
 - `OCCURS` — table definitions for multi-record structures
 - `REDEFINES` — field overlay for alternative data interpretations
 - `VALUE` — field initialization at declaration
