@@ -59,7 +59,7 @@ make clean  # remove compiled artifacts
 
 **Manual compilation:**
 
-```bash
+```cobol
 cobc -m -o ACCTMGMT  programs/account_management.cbl
 cobc -m -o VIEWTRANS programs/view_transactions.cbl
 cobc -m -o LEDGERSM  programs/ledger_summary.cbl
