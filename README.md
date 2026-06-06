@@ -1,3 +1,4 @@
+
 # FinTrust COBOL
 >
 > 💼 A modular COBOL banking simulation demonstrating core legacy financial system patterns.
@@ -79,6 +80,22 @@ COB_LIBRARY_PATH=. ./fintrust
 - `OCCURS` — table definitions for multi-record structures
 - `REDEFINES` — field overlay for alternative data interpretations
 - `VALUE` — field initialization at declaration
+
+---
+
+## 📋 Review Notes
+
+Supplementary documentation written from a code reviewer's perspective,
+covering the patterns, pitfalls, and mainframe concepts that matter most
+in production COBOL environments.
+
+| Document | Contents |
+| --- | --- |
+| [COBOL Antipatterns](review-notes/cobol-antipatterns.md) | Top 10 patterns to flag in any review — missing `AT END`, unsigned fields, `GO TO` chains, `MOVE` truncation, and more |
+| [Numeric Precision](review-notes/numeric-precision.md) | Fixed-decimal arithmetic, implied decimal `V`, signed vs unsigned, `ROUNDED`, `ON SIZE ERROR` |
+| [File Handling](review-notes/file-handling.md) | Sequential I/O patterns, `OPEN`/`CLOSE` discipline, VSAM organizations, JCL DD context |
+| [Data Division Guide](review-notes/data-division-guide.md) | Level numbers, `PIC` clause reference, `OCCURS`, `REDEFINES`, 88-levels, `LINKAGE SECTION` |
+| [Mainframe Concepts](review-notes/mainframe-concepts.md) | z/OS vs GnuCOBOL differences, VSAM, FILE STATUS codes, JCL, RACF, batch architecture, abend codes |
 
 ---
 
